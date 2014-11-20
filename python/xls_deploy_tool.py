@@ -73,6 +73,7 @@
 import xlrd # for read excel
 import sys
 import os
+from google.protobuf import text_format
 
 # TAP的空格数
 TAP_BLANK_NUM = 4
@@ -460,7 +461,7 @@ class DataParser:
 
         LOG_INFO("parse result:\n%s", item_array)
 
-        self._WriteReadableData2File(str(item_array))
+        self._WriteReadableData2File(text_format.MessageToString(item_array, True))
 
         data = item_array.SerializeToString()
         self._WriteData2File(data)
